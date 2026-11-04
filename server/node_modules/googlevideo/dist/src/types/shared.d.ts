@@ -1,0 +1,91 @@
+/**
+ * This module contains type definitions used across the library.
+ * @module
+ */
+import type { FormatInitializationMetadata, MediaHeader } from '../utils/Protos.js';
+export interface SabrFormat {
+    itag: number;
+    lastModified: string;
+    xtags?: string;
+    fps?: number;
+    width?: number;
+    height?: number;
+    contentLength?: number;
+    audioTrackId?: string;
+    mimeType?: string;
+    isDrc?: boolean;
+    isVb?: boolean;
+    isSr?: boolean;
+    quality?: string;
+    qualityLabel?: string;
+    averageBitrate?: number;
+    bitrate: number;
+    audioQuality?: string;
+    numChannels?: number;
+    approxDurationMs: number;
+    language?: string | null;
+    isHdr: boolean;
+    isDubbed?: boolean;
+    isAutoDubbed?: boolean;
+    isDescriptive?: boolean;
+    isSecondary?: boolean;
+    isOriginal?: boolean;
+    hasAudio: boolean;
+    hasVideo: boolean;
+    hasText: boolean;
+    targetDurationSec?: number;
+    codecCode: string;
+}
+export interface FormatStream {
+    itag: number;
+    last_modified_ms?: string;
+    lastModified?: string;
+    fps?: number;
+    xtags?: string;
+    width?: number;
+    height?: number;
+    mime_type?: string;
+    mimeType?: string;
+    audio_quality?: string;
+    audioQuality?: string;
+    bitrate: number;
+    average_bitrate?: number;
+    averageBitrate?: number;
+    quality?: string;
+    quality_label?: string;
+    qualityLabel?: string;
+    audio_track?: {
+        id: string;
+    };
+    audioChannels?: number;
+    audio_channels?: number;
+    caption_track?: Record<string, any>;
+    captionTrack?: Record<string, any>;
+    color_info?: Record<string, any>;
+    colorInfo?: Record<string, any>;
+    audioTrack?: Record<string, any>;
+    is_drc?: boolean;
+    isDrc?: boolean;
+    isVb?: boolean;
+    is_vb?: boolean;
+    is_sr?: boolean;
+    isSr?: boolean;
+    approx_duration_ms?: number;
+    approxDurationMs?: string;
+    content_length?: number;
+    contentLength?: string;
+    is_auto_dubbed?: boolean;
+    is_descriptive?: boolean;
+    is_dubbed?: boolean;
+    language?: string | null;
+    is_original?: boolean;
+    is_secondary?: boolean;
+    targetDurationSec?: number;
+    target_duration_sec?: number;
+    target_duration_dec?: number;
+}
+export type CreateFormatKeyInput = {
+    itag?: number;
+    xtags?: string;
+} | MediaHeader | FormatInitializationMetadata | SabrFormat;
+export type FetchFunction = typeof fetch;

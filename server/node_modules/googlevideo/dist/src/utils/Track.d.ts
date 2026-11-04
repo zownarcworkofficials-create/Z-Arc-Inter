@@ -1,0 +1,31 @@
+import type { EmsgSegmentMetadata } from './EmsgSegmentMetadata.js';
+import type { FormatId } from './Protos.js';
+import type { BufferedRangeSummary, CompletedSegment, SegmentInfo, TrackOutput, TrackState } from '../types/sabrStreamTypes.js';
+export declare class Track {
+    readonly type: 'video' | 'audio';
+    formatId?: FormatId;
+    mimeType?: string;
+    endSegmentNum?: number;
+    endTimeTicks?: number;
+    endTimescale?: number;
+    targetDurationSec?: number;
+    trackedSegments: Map<number, CompletedSegment>;
+    bufferedRangeSummary?: BufferedRangeSummary;
+    emsgSegmentMetadata?: EmsgSegmentMetadata;
+    private _output;
+    constructor(type: 'video' | 'audio');
+    set output(value: TrackOutput);
+    get output(): TrackOutput;
+    get streamLocked(): boolean;
+    get streamDesiredSize(): number;
+    get streamController(): ReadableStreamDefaultController<Uint8Array>;
+    get streamFull(): boolean;
+    get endTimeMs(): number;
+    get endOfStreamReached(): boolean;
+    get latencyMs(): number | undefined;
+    update(state: TrackState): void;
+    snapshot(): TrackState;
+    recordCompletedSegment(info: SegmentInfo, emsgMetadata?: EmsgSegmentMetadata): void;
+    private refreshBufferedRanges;
+    private evictOldestTrackedSegments;
+}

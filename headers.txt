@@ -1,0 +1,13 @@
+HTTP/1.1 500 Internal Server Error
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Methods: GET, POST, OPTIONS
+Access-Control-Allow-Headers: Content-Type
+Access-Control-Expose-Headers: Content-Disposition, X-Actual-Bitrate, X-AAC-Encoder, X-AAC-Mode
+X-Content-Type-Options: nosniff
+Content-Type: text/plain; charset=utf-8
+Content-Length: 42
+Cache-Control: no-store
+Date: Tue, 03 Nov 2026 02:08:48 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+

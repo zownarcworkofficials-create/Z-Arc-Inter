@@ -1,0 +1,14 @@
+prefix=/d/ffmpeg-fdk
+exec_prefix=${prefix}
+libdir=/d/ffmpeg-fdk/lib
+includedir=/d/ffmpeg-fdk/include
+
+Name: libavutil
+Description: FFmpeg utility library
+Version: 59.39.100
+Requires: 
+Requires.private: 
+Conflicts:
+Libs: -L${libdir}  -lavutil -lm -luser32 -lbcrypt -latomic
+Libs.private: 
+Cflags: -I${includedir}

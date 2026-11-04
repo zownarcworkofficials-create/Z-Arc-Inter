@@ -1,0 +1,22 @@
+{
+  "name": "fdk-aac-audio-backend",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Server-side FFmpeg + libfdk_aac conversion endpoint",
+  "main": "index.js",
+  "type": "commonjs",
+  "scripts": {
+    "start:youtube": "node youtube-stream.js",
+    "start:windows": "powershell -NoProfile -ExecutionPolicy Bypass -File start-windows.ps1",
+    "test": "node test-args.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@distube/ytdl-core": "^5.2.1",
+    "cors": "^2.8.6",
+    "express": "^5.3.0",
+    "yt-search": "^2.13.1"
+  }
+}

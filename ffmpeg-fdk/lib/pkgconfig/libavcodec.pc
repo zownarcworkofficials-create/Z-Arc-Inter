@@ -1,0 +1,14 @@
+prefix=/d/ffmpeg-fdk
+exec_prefix=${prefix}
+libdir=/d/ffmpeg-fdk/lib
+includedir=/d/ffmpeg-fdk/include
+
+Name: libavcodec
+Description: FFmpeg codec library
+Version: 61.19.101
+Requires: libswresample >= 5.3.100, libavutil >= 59.39.100
+Requires.private: 
+Conflicts:
+Libs: -L${libdir}  -lavcodec -liconv -lm -latomic -LD:/ffmpeg-fdk/lib -lfdk-aac -lmfuuid -lole32 -lstrmiids -lole32 -luser32 -LD:/msys64/mingw64/bin/../lib -lz
+Libs.private: 
+Cflags: -I${includedir}

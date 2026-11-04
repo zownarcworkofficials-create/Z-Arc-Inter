@@ -1,0 +1,55 @@
+import { type ClientDefinition, type Client } from "./clients.ts";
+import { type Json } from "./json.ts";
+type Identity = Pick<ClientDefinition, "name" | "nameId" | "version" | "userAgent" | "context" | "origin">;
+export interface EmbedContext {
+    readonly visitorData: string | undefined;
+    readonly hostFlags: string | undefined;
+}
+export interface PlayerRequest {
+    readonly client: Client;
+    readonly videoId: string;
+    readonly visitorData: string | undefined;
+    readonly signatureTimestamp: number | undefined;
+    readonly poToken: string | undefined;
+    readonly authHeaders: Readonly<Record<string, string>> | undefined;
+    readonly embed: EmbedContext | undefined;
+}
+interface InnerTubeOptions {
+    readonly fetch: typeof fetch;
+    readonly lang: string | undefined;
+    readonly country: string | undefined;
+    readonly utcOffsetMinutes: number | undefined;
+}
+export declare class InnerTube {
+    #private;
+    readonly fetch: typeof fetch;
+    readonly lang: string;
+    readonly country: string;
+    readonly utcOffsetMinutes: number;
+    constructor(options: InnerTubeOptions);
+    text(url: string, init: RequestInit, what: string): Promise<string>;
+    visitorData(signal: AbortSignal | undefined): Promise<string>;
+    replaceVisitorData(stale: string | undefined, signal: AbortSignal | undefined, { keepOnFailure }?: {
+        keepOnFailure?: boolean | undefined;
+    }): Promise<string>;
+    embedContext(videoId: string, signal: AbortSignal | undefined): Promise<EmbedContext>;
+    player(request: PlayerRequest, signal: AbortSignal | undefined): Promise<Json>;
+    webMetadata(videoId: string, visitorData: string | undefined, signal: AbortSignal | undefined): Promise<Json>;
+    next(videoId: string, visitorData: string | undefined, signal: AbortSignal | undefined): Promise<Json>;
+    musicRadio(videoId: string, playlistId: string, visitorData: string, signal: AbortSignal | undefined): Promise<Json>;
+    musicSuggestions(input: string, visitorData: string, signal: AbortSignal | undefined): Promise<Json>;
+    search(identity: Identity, page: {
+        readonly query: string;
+        readonly params: string;
+    } | {
+        readonly continuation: string;
+    }, safeSearch: boolean, visitorData: string, signal: AbortSignal | undefined): Promise<Json>;
+    browse(page: {
+        readonly playlistId: string;
+    } | {
+        readonly continuation: string;
+    }, visitorData: string, signal: AbortSignal | undefined): Promise<Json>;
+    channelId(url: string, signal: AbortSignal | undefined): Promise<string>;
+    channelLiveVideo(url: string, signal: AbortSignal | undefined): Promise<string>;
+}
+export {};
